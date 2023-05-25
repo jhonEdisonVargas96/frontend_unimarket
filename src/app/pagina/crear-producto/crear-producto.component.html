@@ -1,0 +1,48 @@
+<p>crear-producto works!</p>
+
+<form #f="ngForm">
+  <div>
+    <label>Nombre: </label>
+    <input type="text" name="nombre" [(ngModel)]="producto.nombre" required />
+  </div>
+  <div>
+    <label>Descripcion: </label>
+    <textarea name="descripcion" [(ngModel)]="producto.descripcion" required></textarea>
+  </div>
+  <div>
+    <label>Precio: </label>
+    <input type="number" name="precio" [(ngModel)]="producto.precio" required />
+  </div>
+  <div>
+    <label>Unidades: </label>
+    <input type="number" name="unidades" [(ngModel)]="producto.unidades" required />
+  </div>
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Imagen: </label>
+    <div class="col-sm-7">
+      <input type="file" class="form-control" name="imagenes" (change)="onFileChange($event)" multiple />
+    </div>
+    <div class="col-sm-3">
+      <button type="submit" [disabled]="archivos == null" class="btn btn-primary" (click)="subirImagenes()">
+
+        <i class="fa-solid fa-cloud-arrow-up me-2"></i>Subir imágenes
+      </button>
+    </div>
+  </div>
+  <div>
+    <label>Categoría: </label>
+    <div *ngFor="let item of categorias; index as i">
+      <input type="checkbox" name="categoria" (change)="elegirOpcion($event, item)"
+        [checked]="categoriasSeleccionadas.indexOf(item) > -1 || producto.categoria.indexOf(item) > -1" />
+      <label> {{item}} </label>
+    </div>
+
+
+    <!-- <option value=""  >Seleccione una categoría</option> -->
+    <!--<option [value]="i+1" *ngFor="let item of categorias; index as i" >{{item}}</option>-->
+
+  </div>
+  <button type="submit" [disabled]="f.invalid" class="btn btn-primary"><i class="fa-solid
+      {{esEdicion ? 'fa-pencil' : 'fa-circle-plus'}} me-1" (click)="crearProducto()"></i>{{ esEdicion ? 'Editar' : 'Crear' }}
+    Producto</button>
+</form>
