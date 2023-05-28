@@ -17,13 +17,9 @@ import { RolesGuard } from './guards/roles.service';
 
 const routes: Routes = [
 { path: "", component: InicioComponent },
-{ path: "login", component: LoginComponent },
-{ path: "registro", component: RegistroComponent },
 { path: "crear_producto", component: CrearProductoComponent},
 { path: "busqueda/:texto", component: BusquedaComponent },
 { path: "detalle-producto", component: CrearProductoComponent},
-{ path: "gestion-productos", component: GestionProductosComponent},
-{ path: "editar-producto/:codigo", component: CrearProductoComponent },
 { path: "carrito", component: CarritoComponent},
 { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
 { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
@@ -31,7 +27,7 @@ const routes: Routes = [
     expectedRole: ["CLIENTE"] } },
     { path: "editar-producto/:codigo", component: CrearProductoComponent, canActivate:
     [RolesGuard], data: { expectedRole: ["CLIENTE"] } },
-    { path: "gestionar-productos", component: GestionProductosComponent, canActivate:
+    { path: "gestion-productos", component: GestionProductosComponent, canActivate:
     [RolesGuard], data: { expectedRole: ["CLIENTE"] } },
 { path: "revisar-productos", component: RevisarProductosComponent, canActivate: [RolesGuard],
     data: { expectedRole: ["MODERADOR"] } },

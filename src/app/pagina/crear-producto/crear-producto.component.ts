@@ -38,16 +38,18 @@ export class CrearProductoComponent {
     this.route.params.subscribe(params => {
 
       this.codigoProducto = params["codigo"];
-      this.productoService.obtener(this.codigoProducto).subscribe({
-        next: data =>{
-            this.producto = data.respuesta;
-            this.esEdicion = true;
-            console.log(this.producto.categoria)
-        },
-        error: error =>{
-          objeto.alerta = new Alerta(error.error.respuesta, "danger");
-        }
-      });
+      if(this.codigoProducto!=null){
+        this.productoService.obtener(this.codigoProducto).subscribe({
+          next: data =>{
+              this.producto = data.respuesta;
+              this.esEdicion = true;
+              console.log(this.producto.categoria)
+          },
+          error: error =>{
+            objeto.alerta = new Alerta(error.error.respuesta, "danger");
+          }
+        });
+      }
 
     });
 
@@ -92,7 +94,7 @@ export class CrearProductoComponent {
       
       this.productoService.crear(this.producto).subscribe({
         next: data => {
-          console.log(data.respuesta);
+          this.producto = data.respuesta;
         },
         error: error => {
           console.log(error.error);
@@ -103,11 +105,7 @@ export class CrearProductoComponent {
     }
   }
 
-
-
-
-
-
+  
   public subirImagenes() {
     if (this.archivos != null && this.archivos.length > 0) {
       const objeto = this.producto;

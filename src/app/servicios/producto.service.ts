@@ -34,7 +34,7 @@ export class ProductoService {
   }
 
   public crear(producto:ProductoDTO):Observable<MensajeDTO>{
-    return this.http.post<MensajeDTO>(`${this.prodURL}/producto`, producto);
+    return this.http.post<MensajeDTO>(`${this.prodURL}/crearproducto`, producto);
   }
 
   public obtener(codigo:number): Observable<MensajeDTO>{
@@ -50,7 +50,11 @@ export class ProductoService {
   }
 
   public listarProductoUsuario(codigo:number): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.prodURL}/${codigo}`);
+    return this.http.get<MensajeDTO>(`${this.prodURL}/${codigo}/listarproductousuario`);
+  }
+
+  public listarProducto(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.prodURL}/listarproductos`);
   }
 
 }

@@ -7,20 +7,31 @@ import { ProductoService } from 'src/app/servicios/producto.service';
   templateUrl: './gestion-productos.component.html',
   styleUrls: ['./gestion-productos.component.css']
 })
-export class GestionProductosComponent implements OnInit {
+export class GestionProductosComponent {
 
   seleccionados:ProductoGetDTO[];
   textoBtnEliminar:string;
 
   productos: ProductoGetDTO[];
 
+  codigoUsuario: number = 0;
+
   constructor(private productoServicio: ProductoService) {
     this.productos = [];
     this.seleccionados = [];
     this.textoBtnEliminar = "";
+    //this.cargarProductos();
   }
-  ngOnInit(): void {
-    this.productos = this.productoServicio.listar();
+  
+  private cargarProductos(){
+    this.productoServicio.listarProductoUsuario(this.codigoUsuario).subscribe({
+      next: data => {
+        this.productos = data.respuesta;
+      },
+      error: error =>{
+        console.log(error.error);
+      }
+    })
   }
 
   public seleccionar(producto:ProductoGetDTO, estado:boolean){
