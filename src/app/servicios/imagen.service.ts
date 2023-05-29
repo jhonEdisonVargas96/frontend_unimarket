@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 export class ImagenService {
 
-  private imgURL = "http://localhost:8080/api/imagenes";
+  private imgURL = "unimarket-production-c2ed.up.railway.app/api/imagenes";
 
   constructor(private http: HttpClient) { }
 

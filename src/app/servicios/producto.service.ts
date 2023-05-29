@@ -12,7 +12,7 @@ export class ProductoService {
 
   productos:ProductoGetDTO[];
 
-  private prodURL = "http://localhost:8080/api/producto";
+  private prodURL = "unimarket-production-c2ed.up.railway.app/api/producto";
 
   constructor(private http: HttpClient){
   this.productos = [];
