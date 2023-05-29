@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private authURL = "unimarket-production-c2ed.up.railway.app/api/auth";
+  private authURL = "https://unimarket-production-c2ed.up.railway.app/api/auth";
   constructor(private http: HttpClient) { }
 
   public registrar(usuario:UsuarioDTO):Observable<MensajeDTO>{
